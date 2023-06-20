@@ -34,13 +34,13 @@
 </span>10 <span style=''>}
 </span>11 <span style=''>
 </span>12 <span style=''>object HttpUtils extends HttpUtils {
-</span>13 <span style=''>  override def parse(url: String): HttpRequest = </span><span style='background: #AEF1AE'>Http(url)</span><span style=''>
+</span>13 <span style=''>  def parse(url: String): HttpRequest = </span><span style='background: #AEF1AE'>Http(url)</span><span style=''>
 </span>14 <span style=''>}
 </span>15 <span style=''>
 </span>16 <span style=''>object Main extends App {
 </span>17 <span style=''>  </span><span style='background: #AEF1AE'>parseArguments(args)</span><span style=''> match {
 </span>18 <span style=''>    case Some(config) =&gt; </span><span style='background: #AEF1AE'>run(config)</span><span style=''>
-</span>19 <span style=''>    case _            =&gt; </span><span style='background: #AEF1AE'>println(&quot;Unable to parse arguments&quot;)</span><span style=''>
+</span>19 <span style=''>    case _            =&gt; </span><span style='background: #F0ADAD'>println(&quot;Unable to parse arguments&quot;)</span><span style=''>
 </span>20 <span style=''>  }
 </span>21 <span style=''>
 </span>22 <span style=''>  def parseArguments(args: Array[String]): Option[Config] = {
@@ -50,13 +50,13 @@
 </span>26 <span style=''>      </span><span style='background: #AEF1AE'>OParser.sequence(
 </span>27 <span style=''></span><span style='background: #AEF1AE'>        programName(&quot;WikiStats&quot;),
 </span>28 <span style=''></span><span style='background: #AEF1AE'>        opt[Int]('l', &quot;limit&quot;)
-</span>29 <span style=''></span><span style='background: #AEF1AE'>          .action((x, c) =&gt; c.copy(limit = x))
+</span>29 <span style=''></span><span style='background: #AEF1AE'>          .action((limit, config) =&gt; config.copy(limit = limit))
 </span>30 <span style=''></span><span style='background: #AEF1AE'>          .text(
 </span>31 <span style=''></span><span style='background: #AEF1AE'>            &quot;La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)&quot;
 </span>32 <span style=''></span><span style='background: #AEF1AE'>          ),
 </span>33 <span style=''></span><span style='background: #AEF1AE'>        opt[String]('k', &quot;keyword&quot;)
 </span>34 <span style=''></span><span style='background: #AEF1AE'>          .required()
-</span>35 <span style=''></span><span style='background: #AEF1AE'>          .action((x, c) =&gt; c.copy(keyword = x))
+</span>35 <span style=''></span><span style='background: #AEF1AE'>          .action((keyword, config) =&gt; config.copy(keyword = keyword))
 </span>36 <span style=''></span><span style='background: #AEF1AE'>          .text(&quot;Le mot clef est un argument obligatoire&quot;)
 </span>37 <span style=''></span><span style='background: #AEF1AE'>      )</span><span style=''>
 </span>38 <span style=''>    }
@@ -127,9 +127,9 @@
           1
         </td>
         <td>
-          353
+          344
           -
-          362
+          353
         </td>
         <td>
           Apply
@@ -151,9 +151,9 @@
           2
         </td>
         <td>
-          409
+          400
           -
-          413
+          404
         </td>
         <td>
           Select
@@ -175,9 +175,9 @@
           3
         </td>
         <td>
-          394
+          385
           -
-          414
+          405
         </td>
         <td>
           Apply
@@ -199,9 +199,9 @@
           4
         </td>
         <td>
-          448
+          439
           -
-          459
+          450
         </td>
         <td>
           Apply
@@ -223,9 +223,9 @@
           5
         </td>
         <td>
-          485
+          476
           -
-          521
+          512
         </td>
         <td>
           Apply
@@ -236,7 +236,7 @@
         <td>
           
         </td>
-        <td style="background: #AEF1AE">
+        <td style="background: #F0ADAD">
           scala.Predef.println(&quot;Unable to parse arguments&quot;)
         </td>
       </tr><tr>
@@ -247,9 +247,9 @@
           6
         </td>
         <td>
-          607
+          598
           -
-          630
+          621
         </td>
         <td>
           TypeApply
@@ -271,9 +271,9 @@
           10
         </td>
         <td>
-          679
+          670
           -
-          1108
+          1139
         </td>
         <td>
           Apply
@@ -285,10 +285,10 @@
           mainspec
         </td>
         <td style="background: #AEF1AE">
-          scopt.OParser.sequence[Unit, Config](builder.programName(&quot;WikiStats&quot;), builder.opt[Int]('l', &quot;limit&quot;)(scopt.this.Read.intRead).action(((x: Int, c: Config) =&gt; c.copy(x, c.copy$default$2))).text(&quot;La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)&quot;), builder.opt[String]('k', &quot;keyword&quot;)(scopt.this.Read.stringRead).required().action(((x: String, c: Config) =&gt; {
-  &lt;artifact&gt; val x$1: String = x;
-  &lt;artifact&gt; val x$2: Int = c.copy$default$1;
-  c.copy(x$2, x$1)
+          scopt.OParser.sequence[Unit, Config](builder.programName(&quot;WikiStats&quot;), builder.opt[Int]('l', &quot;limit&quot;)(scopt.this.Read.intRead).action(((limit: Int, config: Config) =&gt; config.copy(limit, config.copy$default$2))).text(&quot;La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)&quot;), builder.opt[String]('k', &quot;keyword&quot;)(scopt.this.Read.stringRead).required().action(((keyword: String, config: Config) =&gt; {
+  &lt;artifact&gt; val x$1: String = keyword;
+  &lt;artifact&gt; val x$2: Int = config.copy$default$1;
+  config.copy(x$2, x$1)
 })).text(&quot;Le mot clef est un argument obligatoire&quot;))
         </td>
       </tr><tr>
@@ -299,9 +299,9 @@
           7
         </td>
         <td>
-          705
+          696
           -
-          729
+          720
         </td>
         <td>
           Apply
@@ -323,9 +323,9 @@
           8
         </td>
         <td>
-          739
+          730
           -
-          933
+          942
         </td>
         <td>
           Apply
@@ -337,7 +337,7 @@
           mainspec
         </td>
         <td style="background: #AEF1AE">
-          builder.opt[Int]('l', &quot;limit&quot;)(scopt.this.Read.intRead).action(((x: Int, c: Config) =&gt; c.copy(x, c.copy$default$2))).text(&quot;La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)&quot;)
+          builder.opt[Int]('l', &quot;limit&quot;)(scopt.this.Read.intRead).action(((limit: Int, config: Config) =&gt; config.copy(limit, config.copy$default$2))).text(&quot;La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)&quot;)
         </td>
       </tr><tr>
         <td>
@@ -347,9 +347,9 @@
           9
         </td>
         <td>
-          943
+          952
           -
-          1100
+          1131
         </td>
         <td>
           Apply
@@ -361,10 +361,10 @@
           mainspec
         </td>
         <td style="background: #AEF1AE">
-          builder.opt[String]('k', &quot;keyword&quot;)(scopt.this.Read.stringRead).required().action(((x: String, c: Config) =&gt; {
-  &lt;artifact&gt; val x$1: String = x;
-  &lt;artifact&gt; val x$2: Int = c.copy$default$1;
-  c.copy(x$2, x$1)
+          builder.opt[String]('k', &quot;keyword&quot;)(scopt.this.Read.stringRead).required().action(((keyword: String, config: Config) =&gt; {
+  &lt;artifact&gt; val x$1: String = keyword;
+  &lt;artifact&gt; val x$2: Int = config.copy$default$1;
+  config.copy(x$2, x$1)
 })).text(&quot;Le mot clef est un argument obligatoire&quot;)
         </td>
       </tr><tr>
@@ -375,9 +375,9 @@
           11
         </td>
         <td>
-          1141
+          1172
           -
-          1145
+          1176
         </td>
         <td>
           ApplyImplicitView
@@ -399,9 +399,9 @@
           14
         </td>
         <td>
-          1147
+          1178
           -
-          1155
+          1186
         </td>
         <td>
           Apply
@@ -423,9 +423,9 @@
           13
         </td>
         <td>
-          1147
+          1178
           -
-          1147
+          1178
         </td>
         <td>
           Select
@@ -447,9 +447,9 @@
           12
         </td>
         <td>
-          1147
+          1178
           -
-          1147
+          1178
         </td>
         <td>
           Select
@@ -471,9 +471,9 @@
           15
         </td>
         <td>
-          1119
+          1150
           -
-          1156
+          1187
         </td>
         <td>
           Apply
@@ -495,9 +495,9 @@
           16
         </td>
         <td>
-          1221
+          1252
           -
-          1345
+          1376
         </td>
         <td>
           Apply
@@ -519,9 +519,9 @@
           17
         </td>
         <td>
-          1441
+          1472
           -
-          1470
+          1501
         </td>
         <td>
           Select
@@ -530,7 +530,7 @@
           scalaj.http.HttpRequest.asString
         </td>
         <td>
-          
+          mainspec
         </td>
         <td style="background: #AEF1AE">
           httpUtils.parse(url).asString
@@ -543,9 +543,9 @@
           18
         </td>
         <td>
-          1475
+          1506
           -
-          1488
+          1519
         </td>
         <td>
           Select
@@ -567,9 +567,9 @@
           20
         </td>
         <td>
-          1515
+          1546
           -
-          1535
+          1566
         </td>
         <td>
           Apply
@@ -591,9 +591,9 @@
           19
         </td>
         <td>
-          1521
+          1552
           -
-          1534
+          1565
         </td>
         <td>
           Select
@@ -615,9 +615,9 @@
           22
         </td>
         <td>
-          1554
+          1585
           -
-          1573
+          1604
         </td>
         <td>
           Apply
@@ -639,9 +639,9 @@
           21
         </td>
         <td>
-          1559
+          1590
           -
-          1572
+          1603
         </td>
         <td>
           Select
@@ -663,9 +663,9 @@
           23
         </td>
         <td>
-          1652
+          1683
           -
-          1671
+          1702
         </td>
         <td>
           Apply
@@ -687,9 +687,9 @@
           26
         </td>
         <td>
-          1718
+          1749
           -
-          1718
+          1749
         </td>
         <td>
           Select
@@ -711,9 +711,9 @@
           25
         </td>
         <td>
-          1706
+          1737
           -
-          1714
+          1745
         </td>
         <td>
           Literal
@@ -735,9 +735,9 @@
           27
         </td>
         <td>
-          1689
+          1720
           -
-          1727
+          1758
         </td>
         <td>
           ApplyToImplicitArgs
@@ -759,9 +759,9 @@
           24
         </td>
         <td>
-          1689
+          1720
           -
-          1703
+          1734
         </td>
         <td>
           Apply
@@ -783,9 +783,9 @@
           35
         </td>
         <td>
-          1748
+          1779
           -
-          1748
+          1779
         </td>
         <td>
           TypeApply
@@ -807,9 +807,9 @@
           36
         </td>
         <td>
-          1732
+          1763
           -
-          1885
+          1916
         </td>
         <td>
           ApplyToImplicitArgs
@@ -835,9 +835,9 @@
           29
         </td>
         <td>
-          1795
+          1826
           -
-          1795
+          1826
         </td>
         <td>
           Select
@@ -859,9 +859,9 @@
           28
         </td>
         <td>
-          1784
+          1815
           -
-          1791
+          1822
         </td>
         <td>
           Literal
@@ -883,9 +883,9 @@
           30
         </td>
         <td>
-          1777
+          1808
           -
-          1803
+          1834
         </td>
         <td>
           ApplyToImplicitArgs
@@ -907,9 +907,9 @@
           32
         </td>
         <td>
-          1845
+          1876
           -
-          1845
+          1876
         </td>
         <td>
           Select
@@ -931,9 +931,9 @@
           31
         </td>
         <td>
-          1830
+          1861
           -
-          1841
+          1872
         </td>
         <td>
           Literal
@@ -955,9 +955,9 @@
           33
         </td>
         <td>
-          1823
+          1854
           -
-          1850
+          1881
         </td>
         <td>
           ApplyToImplicitArgs
@@ -979,9 +979,9 @@
           34
         </td>
         <td>
-          1857
+          1888
           -
-          1879
+          1910
         </td>
         <td>
           Apply
@@ -1003,9 +1003,9 @@
           38
         </td>
         <td>
-          1982
+          2013
           -
-          1992
+          2023
         </td>
         <td>
           Select
@@ -1027,9 +1027,9 @@
           40
         </td>
         <td>
-          1943
+          1974
           -
-          1993
+          2024
         </td>
         <td>
           Apply
@@ -1051,9 +1051,9 @@
           37
         </td>
         <td>
-          1958
+          1989
           -
-          1959
+          1990
         </td>
         <td>
           Literal
@@ -1075,9 +1075,9 @@
           39
         </td>
         <td>
-          1976
+          2007
           -
-          1992
+          2023
         </td>
         <td>
           Apply
@@ -1099,9 +1099,9 @@
           41
         </td>
         <td>
-          2064
+          2095
           -
-          2082
+          2113
         </td>
         <td>
           Literal
@@ -1123,9 +1123,9 @@
           44
         </td>
         <td>
-          2062
+          2093
           -
-          2097
+          2128
         </td>
         <td>
           Apply
@@ -1147,9 +1147,9 @@
           43
         </td>
         <td>
-          2083
+          2114
           -
-          2095
+          2126
         </td>
         <td>
           Select
@@ -1171,9 +1171,9 @@
           45
         </td>
         <td>
-          2054
+          2085
           -
-          2098
+          2129
         </td>
         <td>
           Apply
@@ -1195,9 +1195,9 @@
           42
         </td>
         <td>
-          2096
+          2127
           -
-          2097
+          2128
         </td>
         <td>
           Literal
@@ -1219,9 +1219,9 @@
           50
         </td>
         <td>
-          2103
+          2134
           -
-          2157
+          2188
         </td>
         <td>
           Apply
@@ -1243,9 +1243,9 @@
           47
         </td>
         <td>
-          2155
+          2186
           -
-          2156
+          2187
         </td>
         <td>
           Literal
@@ -1267,9 +1267,9 @@
           46
         </td>
         <td>
-          2113
+          2144
           -
-          2136
+          2167
         </td>
         <td>
           Literal
@@ -1291,9 +1291,9 @@
           49
         </td>
         <td>
-          2111
+          2142
           -
-          2156
+          2187
         </td>
         <td>
           Apply
@@ -1315,9 +1315,9 @@
           48
         </td>
         <td>
-          2137
+          2168
           -
-          2154
+          2185
         </td>
         <td>
           Apply
@@ -1339,9 +1339,9 @@
           56
         </td>
         <td>
-          2162
+          2193
           -
-          2252
+          2283
         </td>
         <td>
           Apply
@@ -1363,9 +1363,9 @@
           53
         </td>
         <td>
-          2232
+          2263
           -
-          2244
+          2275
         </td>
         <td>
           Select
@@ -1387,9 +1387,9 @@
           55
         </td>
         <td>
-          2177
+          2208
           -
-          2246
+          2277
         </td>
         <td>
           Apply
@@ -1411,9 +1411,9 @@
           52
         </td>
         <td>
-          2245
+          2276
           -
-          2246
+          2277
         </td>
         <td>
           Literal
@@ -1435,9 +1435,9 @@
           54
         </td>
         <td>
-          2212
+          2243
           -
-          2244
+          2275
         </td>
         <td>
           Apply
@@ -1459,9 +1459,9 @@
           51
         </td>
         <td>
-          2179
+          2210
           -
-          2211
+          2242
         </td>
         <td>
           Literal
@@ -1483,9 +1483,9 @@
           58
         </td>
         <td>
-          2257
+          2288
           -
-          2306
+          2337
         </td>
         <td>
           Apply
@@ -1507,9 +1507,9 @@
           57
         </td>
         <td>
-          2287
+          2318
           -
-          2300
+          2331
         </td>
         <td>
           Apply
@@ -1531,9 +1531,9 @@
           59
         </td>
         <td>
-          2372
+          2403
           -
-          2386
+          2417
         </td>
         <td>
           Select
@@ -1555,9 +1555,9 @@
           61
         </td>
         <td>
-          2362
+          2393
           -
-          2401
+          2432
         </td>
         <td>
           Apply
@@ -1579,9 +1579,9 @@
           60
         </td>
         <td>
-          2388
+          2419
           -
-          2400
+          2431
         </td>
         <td>
           Select
@@ -1603,9 +1603,9 @@
           62
         </td>
         <td>
-          2406
+          2437
           -
-          2442
+          2473
         </td>
         <td>
           Apply
@@ -1627,9 +1627,9 @@
           64
         </td>
         <td>
-          2477
+          2508
           -
-          2506
+          2537
         </td>
         <td>
           Apply
@@ -1651,9 +1651,9 @@
           63
         </td>
         <td>
-          2490
+          2521
           -
-          2505
+          2536
         </td>
         <td>
           Apply
@@ -1675,9 +1675,9 @@
           65
         </td>
         <td>
-          2541
+          2572
           -
-          2556
+          2587
         </td>
         <td>
           Apply
@@ -1699,9 +1699,9 @@
           66
         </td>
         <td>
-          2533
+          2564
           -
-          2557
+          2588
         </td>
         <td>
           Apply

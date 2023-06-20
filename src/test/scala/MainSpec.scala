@@ -69,7 +69,7 @@ class MainSpec extends AnyFlatSpec with Matchers {
   }
 
   "parseArguments" should "return an error when the arguments are not valid" in {
-    val args = Array("-l", "EF", "-k", "fd")
+    val args = Array("-l", "ldoz", "-k", "scala")
     val config = Main.parseArguments(args)
     config should be(None)
   }

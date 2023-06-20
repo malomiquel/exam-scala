@@ -1,3 +1,6 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(coverageReport, Some(c5af6f4c-7d04-4fe1-8f74-ce992ffcd89a), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: coverageReport[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
 [0m[[0m[0minfo[0m] [0m[0mWaiting for measurement data to sync...[0m
 [0m[[0m[0minfo[0m] [0m[0mReading scoverage instrumentation [/Users/malomiquel/Downloads/Exam-Scala/wikipages/target/scala-2.12/scoverage-data/scoverage.coverage][0m
 [0m[[0m[0minfo[0m] [0m[0mReading scoverage measurements...[0m
@@ -9,3 +12,5 @@
 [0m[[0m[0minfo[0m] [0m[0mBranch coverage....: 100.00%[0m
 [0m[[0m[0minfo[0m] [0m[0mCoverage reports completed[0m
 [0m[[0m[0minfo[0m] [0m[0mAll done. Coverage was stmt=[92.42%] branch=[100.00%][0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 1 s, completed 20 juin 2023, 11:52:07[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
