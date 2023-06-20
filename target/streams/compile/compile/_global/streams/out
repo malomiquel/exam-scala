@@ -1,16 +1,5 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala:1:8: not found: object scopt[0m
-[0m[[0m[31merror[0m] [0m[0mimport scopt.OParser[0m
-[0m[[0m[31merror[0m] [0m[0m       ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala:12:19: not found: value OParser[0m
-[0m[[0m[31merror[0m] [0m[0m    val builder = OParser.builder[Config][0m
-[0m[[0m[31merror[0m] [0m[0m                  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala:15:7: not found: value OParser[0m
-[0m[[0m[31merror[0m] [0m[0m      OParser.sequence([0m
-[0m[[0m[31merror[0m] [0m[0m      ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala:16:9: not found: value programName[0m
-[0m[[0m[31merror[0m] [0m[0m        programName("WikiStats")[0m
-[0m[[0m[31merror[0m] [0m[0m        ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala:20:5: not found: value OParser[0m
-[0m[[0m[31merror[0m] [0m[0m    OParser.parse(parser, args, Config())[0m
-[0m[[0m[31merror[0m] [0m[0m    ^[0m
-[0m[[0m[31merror[0m] [0m[0m5 errors found[0m
+[0m[[0m[0minfo[0m] [0m[0mCleaning datadir [/Users/malomiquel/Downloads/Exam-Scala/wikipages/target/scala-2.12/scoverage-data][0m
+[0m[[0m[0minfo[0m] [0m[0mBeginning coverage instrumentation[0m
+[0m[[0m[0minfo[0m] [0m[0mInstrumentation completed [66 statements][0m
+[0m[[0m[0minfo[0m] [0m[0mWrote instrumentation file [/Users/malomiquel/Downloads/Exam-Scala/wikipages/target/scala-2.12/scoverage-data/scoverage.coverage][0m
+[0m[[0m[0minfo[0m] [0m[0mWill write measurement data to [/Users/malomiquel/Downloads/Exam-Scala/wikipages/target/scala-2.12/scoverage-data][0m

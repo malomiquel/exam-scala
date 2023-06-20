@@ -1,0 +1,11 @@
+[0m[[0m[0minfo[0m] [0m[0mWaiting for measurement data to sync...[0m
+[0m[[0m[0minfo[0m] [0m[0mReading scoverage instrumentation [/Users/malomiquel/Downloads/Exam-Scala/wikipages/target/scala-2.12/scoverage-data/scoverage.coverage][0m
+[0m[[0m[0minfo[0m] [0m[0mReading scoverage measurements...[0m
+[0m[[0m[0minfo[0m] [0m[0mGenerating scoverage reports...[0m
+[0m[[0m[0minfo[0m] [0m[0mWritten Cobertura report [/Users/malomiquel/Downloads/Exam-Scala/wikipages/target/scala-2.12/coverage-report/cobertura.xml][0m
+[0m[[0m[0minfo[0m] [0m[0mWritten XML coverage report [/Users/malomiquel/Downloads/Exam-Scala/wikipages/target/scala-2.12/scoverage-report/scoverage.xml][0m
+[0m[[0m[0minfo[0m] [0m[0mWritten HTML coverage report [/Users/malomiquel/Downloads/Exam-Scala/wikipages/target/scala-2.12/scoverage-report/index.html][0m
+[0m[[0m[0minfo[0m] [0m[0mStatement coverage.: 93.94%[0m
+[0m[[0m[0minfo[0m] [0m[0mBranch coverage....: 100.00%[0m
+[0m[[0m[0minfo[0m] [0m[0mCoverage reports completed[0m
+[0m[[0m[0minfo[0m] [0m[0mAll done. Coverage was stmt=[93.94%] branch=[100.00%][0m

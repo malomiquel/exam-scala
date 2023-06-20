@@ -1,0 +1,1723 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          Main.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>import scopt.OParser
+</span>2 <span style=''>import scalaj.http.{Http, HttpRequest}
+</span>3 <span style=''>import play.api.libs.json.{Json, JsArray}
+</span>4 <span style=''>
+</span>5 <span style=''>case class Config(limit: Int = 10, keyword: String = &quot;&quot;)
+</span>6 <span style=''>case class WikiPage(title: String, words: Int)
+</span>7 <span style=''>
+</span>8 <span style=''>trait HttpUtils {
+</span>9 <span style=''>  def parse(url: String): HttpRequest
+</span>10 <span style=''>}
+</span>11 <span style=''>
+</span>12 <span style=''>object HttpUtils extends HttpUtils {
+</span>13 <span style=''>  override def parse(url: String): HttpRequest = </span><span style='background: #AEF1AE'>Http(url)</span><span style=''>
+</span>14 <span style=''>}
+</span>15 <span style=''>
+</span>16 <span style=''>object Main extends App {
+</span>17 <span style=''>  </span><span style='background: #AEF1AE'>parseArguments(args)</span><span style=''> match {
+</span>18 <span style=''>    case Some(config) =&gt; </span><span style='background: #AEF1AE'>run(config)</span><span style=''>
+</span>19 <span style=''>    case _            =&gt; </span><span style='background: #AEF1AE'>println(&quot;Unable to parse arguments&quot;)</span><span style=''>
+</span>20 <span style=''>  }
+</span>21 <span style=''>
+</span>22 <span style=''>  def parseArguments(args: Array[String]): Option[Config] = {
+</span>23 <span style=''>    val builder = </span><span style='background: #AEF1AE'>OParser.builder[Config]</span><span style=''>
+</span>24 <span style=''>    val parser = {
+</span>25 <span style=''>      import builder._
+</span>26 <span style=''>      </span><span style='background: #AEF1AE'>OParser.sequence(
+</span>27 <span style=''></span><span style='background: #AEF1AE'>        programName(&quot;WikiStats&quot;),
+</span>28 <span style=''></span><span style='background: #AEF1AE'>        opt[Int]('l', &quot;limit&quot;)
+</span>29 <span style=''></span><span style='background: #AEF1AE'>          .action((x, c) =&gt; c.copy(limit = x))
+</span>30 <span style=''></span><span style='background: #AEF1AE'>          .text(
+</span>31 <span style=''></span><span style='background: #AEF1AE'>            &quot;La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)&quot;
+</span>32 <span style=''></span><span style='background: #AEF1AE'>          ),
+</span>33 <span style=''></span><span style='background: #AEF1AE'>        opt[String]('k', &quot;keyword&quot;)
+</span>34 <span style=''></span><span style='background: #AEF1AE'>          .required()
+</span>35 <span style=''></span><span style='background: #AEF1AE'>          .action((x, c) =&gt; c.copy(keyword = x))
+</span>36 <span style=''></span><span style='background: #AEF1AE'>          .text(&quot;Le mot clef est un argument obligatoire&quot;)
+</span>37 <span style=''></span><span style='background: #AEF1AE'>      )</span><span style=''>
+</span>38 <span style=''>    }
+</span>39 <span style=''>    </span><span style='background: #AEF1AE'>OParser.parse(parser, args, Config())</span><span style=''>
+</span>40 <span style=''>  }
+</span>41 <span style=''>
+</span>42 <span style=''>  def formatUrl(keyword: String, limit: Int): String =
+</span>43 <span style=''>    </span><span style='background: #AEF1AE'>s&quot;https://en.wikipedia.org/w/api.php?action=query&amp;format=json&amp;prop=&amp;sroffset=0&amp;list=search&amp;srsearch=$keyword&amp;srlimit=$limit&quot;</span><span style=''>
+</span>44 <span style=''>
+</span>45 <span style=''>  def getPages(url: String, httpUtils: HttpUtils): Either[Int, String] = {
+</span>46 <span style=''>    val response = </span><span style='background: #AEF1AE'>httpUtils.parse(url).asString</span><span style=''>
+</span>47 <span style=''>    </span><span style='background: #AEF1AE'>response.code</span><span style=''> match {
+</span>48 <span style=''>      case 200 =&gt; </span><span style='background: #AEF1AE'>Right(response.body)</span><span style=''>
+</span>49 <span style=''>      case _   =&gt; </span><span style='background: #F0ADAD'>Left(response.code)</span><span style=''>
+</span>50 <span style=''>    }
+</span>51 <span style=''>  }
+</span>52 <span style=''>
+</span>53 <span style=''>  def parseJson(rawJson: String): Seq[WikiPage] = {
+</span>54 <span style=''>    val json = </span><span style='background: #AEF1AE'>Json.parse(rawJson)</span><span style=''>
+</span>55 <span style=''>    val pages = (</span><span style='background: #AEF1AE'>json \ &quot;query&quot; \ &quot;search&quot;).as[JsArray]</span><span style=''>
+</span>56 <span style=''>    </span><span style='background: #AEF1AE'>pages.value.map { page =&gt;
+</span>57 <span style=''></span><span style='background: #AEF1AE'>      val title = (page \ &quot;title&quot;).as[String]
+</span>58 <span style=''></span><span style='background: #AEF1AE'>      val words = (page \ &quot;wordcount&quot;).as[Int]
+</span>59 <span style=''></span><span style='background: #AEF1AE'>      WikiPage(title, words)
+</span>60 <span style=''></span><span style='background: #AEF1AE'>    }</span><span style=''>
+</span>61 <span style=''>  }
+</span>62 <span style=''>
+</span>63 <span style=''>  def totalWords(pages: Seq[WikiPage]): Int = {
+</span>64 <span style=''>    </span><span style='background: #AEF1AE'>pages.foldLeft(0)((acc, page) =&gt; acc + page.words)</span><span style=''>
+</span>65 <span style=''>  }
+</span>66 <span style=''>
+</span>67 <span style=''>  def displayPages(pages: Seq[WikiPage]): Unit = {
+</span>68 <span style=''>    </span><span style='background: #AEF1AE'>println(s&quot;Nombre de pages: ${pages.length}&quot;)</span><span style=''>
+</span>69 <span style=''>    </span><span style='background: #AEF1AE'>println(s&quot;Nombre total de mots: ${totalWords(pages)}&quot;)</span><span style=''>
+</span>70 <span style=''>    </span><span style='background: #AEF1AE'>println(
+</span>71 <span style=''></span><span style='background: #AEF1AE'>      s&quot;Nombre moyen de mots par page: ${totalWords(pages) / pages.length}&quot;
+</span>72 <span style=''></span><span style='background: #AEF1AE'>    )</span><span style=''>
+</span>73 <span style=''>    </span><span style='background: #AEF1AE'>pages.foreach { page =&gt;
+</span>74 <span style=''></span><span style='background: #AEF1AE'>      println(page)
+</span>75 <span style=''></span><span style='background: #AEF1AE'>    }</span><span style=''>
+</span>76 <span style=''>  }
+</span>77 <span style=''>
+</span>78 <span style=''>  def run(config: Config): Unit = {
+</span>79 <span style=''>    val url = </span><span style='background: #AEF1AE'>formatUrl(config.keyword, config.limit)</span><span style=''>
+</span>80 <span style=''>    </span><span style='background: #AEF1AE'>getPages(url, httpUtils = HttpUtils)</span><span style=''> match {
+</span>81 <span style=''>      case Right(body) =&gt; </span><span style='background: #AEF1AE'>displayPages(parseJson(body))</span><span style=''>
+</span>82 <span style=''>      case Left(code)  =&gt; </span><span style='background: #F0ADAD'>println(s&quot;Error: $code&quot;)</span><span style=''>
+</span>83 <span style=''>    }
+</span>84 <span style=''>  }
+</span>85 <span style=''>}
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Tests</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          13
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          353
+          -
+          362
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scalaj.http.BaseHttp.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scalaj.http.Http.apply(url)
+        </td>
+      </tr><tr>
+        <td>
+          17
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          409
+          -
+          413
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.App.args
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Main.this.args
+        </td>
+      </tr><tr>
+        <td>
+          17
+        </td>
+        <td>
+          3
+        </td>
+        <td>
+          394
+          -
+          414
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          Main.parseArguments
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Main.this.parseArguments(Main.this.args)
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          448
+          -
+          459
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          Main.run
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Main.this.run(config)
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          5
+        </td>
+        <td>
+          485
+          -
+          521
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.println(&quot;Unable to parse arguments&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          6
+        </td>
+        <td>
+          607
+          -
+          630
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scopt.OParser.builder
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          scopt.OParser.builder[Config]
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          10
+        </td>
+        <td>
+          679
+          -
+          1108
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scopt.OParser.sequence
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          scopt.OParser.sequence[Unit, Config](builder.programName(&quot;WikiStats&quot;), builder.opt[Int]('l', &quot;limit&quot;)(scopt.this.Read.intRead).action(((x: Int, c: Config) =&gt; c.copy(x, c.copy$default$2))).text(&quot;La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)&quot;), builder.opt[String]('k', &quot;keyword&quot;)(scopt.this.Read.stringRead).required().action(((x: String, c: Config) =&gt; {
+  &lt;artifact&gt; val x$1: String = x;
+  &lt;artifact&gt; val x$2: Int = c.copy$default$1;
+  c.copy(x$2, x$1)
+})).text(&quot;Le mot clef est un argument obligatoire&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          7
+        </td>
+        <td>
+          705
+          -
+          729
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scopt.OParserBuilder.programName
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          builder.programName(&quot;WikiStats&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+          739
+          -
+          933
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scopt.OParser.text
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          builder.opt[Int]('l', &quot;limit&quot;)(scopt.this.Read.intRead).action(((x: Int, c: Config) =&gt; c.copy(x, c.copy$default$2))).text(&quot;La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          36
+        </td>
+        <td>
+          9
+        </td>
+        <td>
+          943
+          -
+          1100
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scopt.OParser.text
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          builder.opt[String]('k', &quot;keyword&quot;)(scopt.this.Read.stringRead).required().action(((x: String, c: Config) =&gt; {
+  &lt;artifact&gt; val x$1: String = x;
+  &lt;artifact&gt; val x$2: Int = c.copy$default$1;
+  c.copy(x$2, x$1)
+})).text(&quot;Le mot clef est un argument obligatoire&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          39
+        </td>
+        <td>
+          11
+        </td>
+        <td>
+          1141
+          -
+          1145
+        </td>
+        <td>
+          ApplyImplicitView
+        </td>
+        <td>
+          scala.LowPriorityImplicits.wrapRefArray
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.wrapRefArray[String](args)
+        </td>
+      </tr><tr>
+        <td>
+          39
+        </td>
+        <td>
+          14
+        </td>
+        <td>
+          1147
+          -
+          1155
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          Config.apply
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          Config.apply(Config.apply$default$1, Config.apply$default$2)
+        </td>
+      </tr><tr>
+        <td>
+          39
+        </td>
+        <td>
+          13
+        </td>
+        <td>
+          1147
+          -
+          1147
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          Config.apply$default$2
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          Config.apply$default$2
+        </td>
+      </tr><tr>
+        <td>
+          39
+        </td>
+        <td>
+          12
+        </td>
+        <td>
+          1147
+          -
+          1147
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          Config.apply$default$1
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          Config.apply$default$1
+        </td>
+      </tr><tr>
+        <td>
+          39
+        </td>
+        <td>
+          15
+        </td>
+        <td>
+          1119
+          -
+          1156
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scopt.OParser.parse
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          scopt.OParser.parse[Config](parser, scala.Predef.wrapRefArray[String](args), Config.apply(Config.apply$default$1, Config.apply$default$2))
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          16
+        </td>
+        <td>
+          1221
+          -
+          1345
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.StringContext.s
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          scala.StringContext.apply(&quot;https://en.wikipedia.org/w/api.php?action=query&amp;format=json&amp;prop=&amp;sroffset=0&amp;list=search&amp;srsearch=&quot;, &quot;&amp;srlimit=&quot;, &quot;&quot;).s(keyword, limit)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          17
+        </td>
+        <td>
+          1441
+          -
+          1470
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scalaj.http.HttpRequest.asString
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          httpUtils.parse(url).asString
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          18
+        </td>
+        <td>
+          1475
+          -
+          1488
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scalaj.http.HttpResponse.code
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          response.code
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          20
+        </td>
+        <td>
+          1515
+          -
+          1535
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.util.Right.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.`package`.Right.apply[Nothing, String](response.body)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          19
+        </td>
+        <td>
+          1521
+          -
+          1534
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scalaj.http.HttpResponse.body
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          response.body
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          22
+        </td>
+        <td>
+          1554
+          -
+          1573
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.util.Left.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          scala.`package`.Left.apply[Int, Nothing](response.code)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          21
+        </td>
+        <td>
+          1559
+          -
+          1572
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scalaj.http.HttpResponse.code
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          response.code
+        </td>
+      </tr><tr>
+        <td>
+          54
+        </td>
+        <td>
+          23
+        </td>
+        <td>
+          1652
+          -
+          1671
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.libs.json.Json.parse
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.libs.json.Json.parse(rawJson)
+        </td>
+      </tr><tr>
+        <td>
+          55
+        </td>
+        <td>
+          26
+        </td>
+        <td>
+          1718
+          -
+          1718
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.libs.json.DefaultReads.JsArrayReads
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          json.this.Reads.JsArrayReads
+        </td>
+      </tr><tr>
+        <td>
+          55
+        </td>
+        <td>
+          25
+        </td>
+        <td>
+          1706
+          -
+          1714
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;search&quot;
+        </td>
+      </tr><tr>
+        <td>
+          55
+        </td>
+        <td>
+          27
+        </td>
+        <td>
+          1689
+          -
+          1727
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.libs.json.JsReadable.as
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          json.this.JsLookupResult.jsLookupResultToJsLookup(json.this.JsValue.jsValueToJsLookup(json).\(&quot;query&quot;)).\(&quot;search&quot;).as[play.api.libs.json.JsArray](json.this.Reads.JsArrayReads)
+        </td>
+      </tr><tr>
+        <td>
+          55
+        </td>
+        <td>
+          24
+        </td>
+        <td>
+          1689
+          -
+          1703
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.libs.json.JsLookup.\
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          json.this.JsValue.jsValueToJsLookup(json).\(&quot;query&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          56
+        </td>
+        <td>
+          35
+        </td>
+        <td>
+          1748
+          -
+          1748
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.collection.IndexedSeq.canBuildFrom
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          collection.this.IndexedSeq.canBuildFrom[WikiPage]
+        </td>
+      </tr><tr>
+        <td>
+          56
+        </td>
+        <td>
+          36
+        </td>
+        <td>
+          1732
+          -
+          1885
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.collection.TraversableLike.map
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          pages.value.map[WikiPage, Seq[WikiPage]](((page: play.api.libs.json.JsValue) =&gt; {
+  val title: String = json.this.JsValue.jsValueToJsLookup(page).\(&quot;title&quot;).as[String](json.this.Reads.StringReads);
+  val words: Int = json.this.JsValue.jsValueToJsLookup(page).\(&quot;wordcount&quot;).as[Int](json.this.Reads.IntReads);
+  WikiPage.apply(title, words)
+}))(collection.this.IndexedSeq.canBuildFrom[WikiPage])
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          29
+        </td>
+        <td>
+          1795
+          -
+          1795
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.libs.json.DefaultReads.StringReads
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          json.this.Reads.StringReads
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          28
+        </td>
+        <td>
+          1784
+          -
+          1791
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;title&quot;
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          30
+        </td>
+        <td>
+          1777
+          -
+          1803
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.libs.json.JsReadable.as
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          json.this.JsValue.jsValueToJsLookup(page).\(&quot;title&quot;).as[String](json.this.Reads.StringReads)
+        </td>
+      </tr><tr>
+        <td>
+          58
+        </td>
+        <td>
+          32
+        </td>
+        <td>
+          1845
+          -
+          1845
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.libs.json.DefaultReads.IntReads
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          json.this.Reads.IntReads
+        </td>
+      </tr><tr>
+        <td>
+          58
+        </td>
+        <td>
+          31
+        </td>
+        <td>
+          1830
+          -
+          1841
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;wordcount&quot;
+        </td>
+      </tr><tr>
+        <td>
+          58
+        </td>
+        <td>
+          33
+        </td>
+        <td>
+          1823
+          -
+          1850
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.libs.json.JsReadable.as
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          json.this.JsValue.jsValueToJsLookup(page).\(&quot;wordcount&quot;).as[Int](json.this.Reads.IntReads)
+        </td>
+      </tr><tr>
+        <td>
+          59
+        </td>
+        <td>
+          34
+        </td>
+        <td>
+          1857
+          -
+          1879
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          WikiPage.apply
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          WikiPage.apply(title, words)
+        </td>
+      </tr><tr>
+        <td>
+          64
+        </td>
+        <td>
+          38
+        </td>
+        <td>
+          1982
+          -
+          1992
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          WikiPage.words
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          page.words
+        </td>
+      </tr><tr>
+        <td>
+          64
+        </td>
+        <td>
+          40
+        </td>
+        <td>
+          1943
+          -
+          1993
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.TraversableOnce.foldLeft
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          pages.foldLeft[Int](0)(((acc: Int, page: WikiPage) =&gt; acc.+(page.words)))
+        </td>
+      </tr><tr>
+        <td>
+          64
+        </td>
+        <td>
+          37
+        </td>
+        <td>
+          1958
+          -
+          1959
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          0
+        </td>
+      </tr><tr>
+        <td>
+          64
+        </td>
+        <td>
+          39
+        </td>
+        <td>
+          1976
+          -
+          1992
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Int.+
+        </td>
+        <td>
+          mainspec
+        </td>
+        <td style="background: #AEF1AE">
+          acc.+(page.words)
+        </td>
+      </tr><tr>
+        <td>
+          68
+        </td>
+        <td>
+          41
+        </td>
+        <td>
+          2064
+          -
+          2082
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;Nombre de pages: &quot;
+        </td>
+      </tr><tr>
+        <td>
+          68
+        </td>
+        <td>
+          44
+        </td>
+        <td>
+          2062
+          -
+          2097
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.StringContext.s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.StringContext.apply(&quot;Nombre de pages: &quot;, &quot;&quot;).s(pages.length)
+        </td>
+      </tr><tr>
+        <td>
+          68
+        </td>
+        <td>
+          43
+        </td>
+        <td>
+          2083
+          -
+          2095
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.collection.SeqLike.length
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          pages.length
+        </td>
+      </tr><tr>
+        <td>
+          68
+        </td>
+        <td>
+          45
+        </td>
+        <td>
+          2054
+          -
+          2098
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.println(scala.StringContext.apply(&quot;Nombre de pages: &quot;, &quot;&quot;).s(pages.length))
+        </td>
+      </tr><tr>
+        <td>
+          68
+        </td>
+        <td>
+          42
+        </td>
+        <td>
+          2096
+          -
+          2097
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          69
+        </td>
+        <td>
+          50
+        </td>
+        <td>
+          2103
+          -
+          2157
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.println(scala.StringContext.apply(&quot;Nombre total de mots: &quot;, &quot;&quot;).s(Main.this.totalWords(pages)))
+        </td>
+      </tr><tr>
+        <td>
+          69
+        </td>
+        <td>
+          47
+        </td>
+        <td>
+          2155
+          -
+          2156
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          69
+        </td>
+        <td>
+          46
+        </td>
+        <td>
+          2113
+          -
+          2136
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;Nombre total de mots: &quot;
+        </td>
+      </tr><tr>
+        <td>
+          69
+        </td>
+        <td>
+          49
+        </td>
+        <td>
+          2111
+          -
+          2156
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.StringContext.s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.StringContext.apply(&quot;Nombre total de mots: &quot;, &quot;&quot;).s(Main.this.totalWords(pages))
+        </td>
+      </tr><tr>
+        <td>
+          69
+        </td>
+        <td>
+          48
+        </td>
+        <td>
+          2137
+          -
+          2154
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          Main.totalWords
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Main.this.totalWords(pages)
+        </td>
+      </tr><tr>
+        <td>
+          70
+        </td>
+        <td>
+          56
+        </td>
+        <td>
+          2162
+          -
+          2252
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.println(scala.StringContext.apply(&quot;Nombre moyen de mots par page: &quot;, &quot;&quot;).s(Main.this.totalWords(pages)./(pages.length)))
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          53
+        </td>
+        <td>
+          2232
+          -
+          2244
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.collection.SeqLike.length
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          pages.length
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          55
+        </td>
+        <td>
+          2177
+          -
+          2246
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.StringContext.s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.StringContext.apply(&quot;Nombre moyen de mots par page: &quot;, &quot;&quot;).s(Main.this.totalWords(pages)./(pages.length))
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          52
+        </td>
+        <td>
+          2245
+          -
+          2246
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          54
+        </td>
+        <td>
+          2212
+          -
+          2244
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Int./
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Main.this.totalWords(pages)./(pages.length)
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          51
+        </td>
+        <td>
+          2179
+          -
+          2211
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;Nombre moyen de mots par page: &quot;
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          58
+        </td>
+        <td>
+          2257
+          -
+          2306
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.IterableLike.foreach
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          pages.foreach[Unit](((page: WikiPage) =&gt; scala.Predef.println(page)))
+        </td>
+      </tr><tr>
+        <td>
+          74
+        </td>
+        <td>
+          57
+        </td>
+        <td>
+          2287
+          -
+          2300
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.println(page)
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          59
+        </td>
+        <td>
+          2372
+          -
+          2386
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          Config.keyword
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          config.keyword
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          61
+        </td>
+        <td>
+          2362
+          -
+          2401
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          Main.formatUrl
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Main.this.formatUrl(config.keyword, config.limit)
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          60
+        </td>
+        <td>
+          2388
+          -
+          2400
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          Config.limit
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          config.limit
+        </td>
+      </tr><tr>
+        <td>
+          80
+        </td>
+        <td>
+          62
+        </td>
+        <td>
+          2406
+          -
+          2442
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          Main.getPages
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Main.this.getPages(url, HttpUtils)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          64
+        </td>
+        <td>
+          2477
+          -
+          2506
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          Main.displayPages
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Main.this.displayPages(Main.this.parseJson(body))
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          63
+        </td>
+        <td>
+          2490
+          -
+          2505
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          Main.parseJson
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          Main.this.parseJson(body)
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          65
+        </td>
+        <td>
+          2541
+          -
+          2556
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.StringContext.s
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          scala.StringContext.apply(&quot;Error: &quot;, &quot;&quot;).s(code)
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          66
+        </td>
+        <td>
+          2533
+          -
+          2557
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #F0ADAD">
+          scala.Predef.println(scala.StringContext.apply(&quot;Error: &quot;, &quot;&quot;).s(code))
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

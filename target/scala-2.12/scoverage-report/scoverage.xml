@@ -1,0 +1,262 @@
+<scoverage 
+statement-count="66" statements-invoked="62" statement-rate="93.94" branch-rate="100.00" version="1.0" timestamp="1687248624450">
+    <packages>
+        <package name="&lt;empty&gt;" statement-count="66" statements-invoked="62" statement-rate="93.94">
+            <classes>
+                <class 
+                name="Main" filename="Main.scala" statement-count="65" statements-invoked="61" statement-rate="93.85" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="&lt;empty&gt;/Main/&lt;none&gt;" statement-count="4" statements-invoked="4" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="&lt;none&gt;" start="409" end="413" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="&lt;none&gt;" start="485" end="521" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="&lt;none&gt;" start="448" end="459" line="18" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="&lt;none&gt;" start="394" end="414" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/Main/getPages" statement-count="6" statements-invoked="4" statement-rate="66.67" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="getPages" start="1441" end="1470" line="46" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="getPages" start="1515" end="1535" line="48" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="getPages" start="1554" end="1573" line="49" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="getPages" start="1521" end="1534" line="48" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="getPages" start="1475" end="1488" line="47" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="getPages" start="1559" end="1572" line="49" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/Main/displayPages" statement-count="18" statements-invoked="18" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2103" end="2157" line="69" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2064" end="2082" line="68" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2232" end="2244" line="71" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2062" end="2097" line="68" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2162" end="2252" line="70" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2155" end="2156" line="69" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2113" end="2136" line="69" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2177" end="2246" line="71" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2257" end="2306" line="73" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2111" end="2156" line="69" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2245" end="2246" line="71" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2083" end="2095" line="68" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2212" end="2244" line="71" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2054" end="2098" line="68" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2287" end="2300" line="74" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2137" end="2154" line="69" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2096" end="2097" line="68" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="displayPages" start="2179" end="2211" line="71" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/Main/totalWords" statement-count="4" statements-invoked="4" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="totalWords" start="1982" end="1992" line="64" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="totalWords" start="1943" end="1993" line="64" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="totalWords" start="1958" end="1959" line="64" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="totalWords" start="1976" end="1992" line="64" branch="false" invocation-count="2" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/Main/parseJson" statement-count="14" statements-invoked="14" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1652" end="1671" line="54" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1845" end="1845" line="58" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1748" end="1748" line="56" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1718" end="1718" line="55" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1795" end="1795" line="57" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1830" end="1841" line="58" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1706" end="1714" line="55" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1857" end="1879" line="59" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1784" end="1791" line="57" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1689" end="1727" line="55" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1732" end="1885" line="56" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1777" end="1803" line="57" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1689" end="1703" line="55" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseJson" start="1823" end="1850" line="58" branch="false" invocation-count="2" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/Main/parseArguments" statement-count="10" statements-invoked="10" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseArguments" start="739" end="933" line="30" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseArguments" start="1141" end="1145" line="39" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseArguments" start="1147" end="1155" line="39" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseArguments" start="1147" end="1147" line="39" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseArguments" start="705" end="729" line="27" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseArguments" start="679" end="1108" line="26" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseArguments" start="943" end="1100" line="36" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseArguments" start="1147" end="1147" line="39" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseArguments" start="1119" end="1156" line="39" branch="false" invocation-count="2" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parseArguments" start="607" end="630" line="23" branch="false" invocation-count="2" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/Main/run" statement-count="8" statements-invoked="6" statement-rate="75.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="run" start="2372" end="2386" line="79" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="run" start="2406" end="2442" line="80" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="run" start="2541" end="2556" line="82" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="run" start="2477" end="2506" line="81" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="run" start="2362" end="2401" line="79" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="run" start="2388" end="2400" line="79" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="run" start="2490" end="2505" line="81" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="run" start="2533" end="2557" line="82" branch="false" invocation-count="0" ignored="false">
+</statement>
+                            </statements>
+</method>
+                        <method 
+                        name="&lt;empty&gt;/Main/formatUrl" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="Main" class-type="Object" full-class-name="Main" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="formatUrl" start="1221" end="1345" line="43" branch="false" invocation-count="2" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+                <class 
+                name="HttpUtils" filename="Main.scala" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="&lt;empty&gt;/HttpUtils/parse" statement-count="1" statements-invoked="1" statement-rate="100.00" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="&lt;empty&gt;" class="HttpUtils" class-type="Object" full-class-name="HttpUtils" source="/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala" method="parse" start="353" end="362" line="13" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+            </classes>
+        </package>
+    </packages>
+</scoverage>

@@ -1,0 +1,1154 @@
+# Coverage data, format version: 2.0
+# Statement data:
+# - id
+# - source path
+# - package name
+# - class name
+# - class type (Class, Object or Trait)
+# - full class name
+# - method name
+# - start offset
+# - end offset
+# - line number
+# - symbol name
+# - tree name
+# - is branch
+# - invocations count
+# - is ignored
+# - description (can be multi-line)
+# '' sign
+# ------------------------------------------
+1
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+HttpUtils
+Object
+HttpUtils
+parse
+353
+362
+13
+scalaj.http.BaseHttp.apply
+Apply
+false
+0
+false
+scalaj.http.Http.apply(url)
+
+2
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+<none>
+409
+413
+17
+scala.App.args
+Select
+false
+0
+false
+Main.this.args
+
+3
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+<none>
+394
+414
+17
+Main.parseArguments
+Apply
+false
+0
+false
+Main.this.parseArguments(Main.this.args)
+
+4
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+<none>
+448
+459
+18
+Main.run
+Apply
+false
+0
+false
+Main.this.run(config)
+
+5
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+<none>
+485
+521
+19
+scala.Predef.println
+Apply
+false
+0
+false
+scala.Predef.println("Unable to parse arguments")
+
+6
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseArguments
+607
+630
+23
+scopt.OParser.builder
+TypeApply
+false
+0
+false
+scopt.OParser.builder[Config]
+
+7
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseArguments
+705
+729
+27
+scopt.OParserBuilder.programName
+Apply
+false
+0
+false
+builder.programName("WikiStats")
+
+8
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseArguments
+739
+933
+30
+scopt.OParser.text
+Apply
+false
+0
+false
+builder.opt[Int]('l', "limit")(scopt.this.Read.intRead).action(((x: Int, c: Config) => c.copy(x, c.copy$default$2))).text("La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)")
+
+9
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseArguments
+943
+1100
+36
+scopt.OParser.text
+Apply
+false
+0
+false
+builder.opt[String]('k', "keyword")(scopt.this.Read.stringRead).required().action(((x: String, c: Config) => {
+  <artifact> val x$1: String = x;
+  <artifact> val x$2: Int = c.copy$default$1;
+  c.copy(x$2, x$1)
+})).text("Le mot clef est un argument obligatoire")
+
+10
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseArguments
+679
+1108
+26
+scopt.OParser.sequence
+Apply
+false
+0
+false
+scopt.OParser.sequence[Unit, Config](builder.programName("WikiStats"), builder.opt[Int]('l', "limit")(scopt.this.Read.intRead).action(((x: Int, c: Config) => c.copy(x, c.copy$default$2))).text("La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)"), builder.opt[String]('k', "keyword")(scopt.this.Read.stringRead).required().action(((x: String, c: Config) => {
+  <artifact> val x$1: String = x;
+  <artifact> val x$2: Int = c.copy$default$1;
+  c.copy(x$2, x$1)
+})).text("Le mot clef est un argument obligatoire"))
+
+11
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseArguments
+1141
+1145
+39
+scala.LowPriorityImplicits.wrapRefArray
+ApplyImplicitView
+false
+0
+false
+scala.Predef.wrapRefArray[String](args)
+
+12
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseArguments
+1147
+1147
+39
+Config.apply$default$1
+Select
+false
+0
+false
+Config.apply$default$1
+
+13
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseArguments
+1147
+1147
+39
+Config.apply$default$2
+Select
+false
+0
+false
+Config.apply$default$2
+
+14
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseArguments
+1147
+1155
+39
+Config.apply
+Apply
+false
+0
+false
+Config.apply(Config.apply$default$1, Config.apply$default$2)
+
+15
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseArguments
+1119
+1156
+39
+scopt.OParser.parse
+Apply
+false
+0
+false
+scopt.OParser.parse[Config](parser, scala.Predef.wrapRefArray[String](args), Config.apply(Config.apply$default$1, Config.apply$default$2))
+
+16
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+formatUrl
+1221
+1345
+43
+scala.StringContext.s
+Apply
+false
+0
+false
+scala.StringContext.apply("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=&sroffset=0&list=search&srsearch=", "&srlimit=", "").s(keyword, limit)
+
+17
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+getPages
+1441
+1470
+46
+scalaj.http.HttpRequest.asString
+Select
+false
+0
+false
+httpUtils.parse(url).asString
+
+18
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+getPages
+1475
+1488
+47
+scalaj.http.HttpResponse.code
+Select
+false
+0
+false
+response.code
+
+19
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+getPages
+1521
+1534
+48
+scalaj.http.HttpResponse.body
+Select
+false
+0
+false
+response.body
+
+20
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+getPages
+1515
+1535
+48
+scala.util.Right.apply
+Apply
+false
+0
+false
+scala.`package`.Right.apply[Nothing, String](response.body)
+
+21
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+getPages
+1559
+1572
+49
+scalaj.http.HttpResponse.code
+Select
+false
+0
+false
+response.code
+
+22
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+getPages
+1554
+1573
+49
+scala.util.Left.apply
+Apply
+false
+0
+false
+scala.`package`.Left.apply[Int, Nothing](response.code)
+
+23
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1652
+1671
+54
+play.api.libs.json.Json.parse
+Apply
+false
+0
+false
+play.api.libs.json.Json.parse(rawJson)
+
+24
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1689
+1703
+55
+play.api.libs.json.JsLookup.\
+Apply
+false
+0
+false
+json.this.JsValue.jsValueToJsLookup(json).\("query")
+
+25
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1706
+1714
+55
+<nosymbol>
+Literal
+false
+0
+false
+"search"
+
+26
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1718
+1718
+55
+play.api.libs.json.DefaultReads.JsArrayReads
+Select
+false
+0
+false
+json.this.Reads.JsArrayReads
+
+27
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1689
+1727
+55
+play.api.libs.json.JsReadable.as
+ApplyToImplicitArgs
+false
+0
+false
+json.this.JsLookupResult.jsLookupResultToJsLookup(json.this.JsValue.jsValueToJsLookup(json).\("query")).\("search").as[play.api.libs.json.JsArray](json.this.Reads.JsArrayReads)
+
+28
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1784
+1791
+57
+<nosymbol>
+Literal
+false
+0
+false
+"title"
+
+29
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1795
+1795
+57
+play.api.libs.json.DefaultReads.StringReads
+Select
+false
+0
+false
+json.this.Reads.StringReads
+
+30
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1777
+1803
+57
+play.api.libs.json.JsReadable.as
+ApplyToImplicitArgs
+false
+0
+false
+json.this.JsValue.jsValueToJsLookup(page).\("title").as[String](json.this.Reads.StringReads)
+
+31
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1830
+1841
+58
+<nosymbol>
+Literal
+false
+0
+false
+"wordcount"
+
+32
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1845
+1845
+58
+play.api.libs.json.DefaultReads.IntReads
+Select
+false
+0
+false
+json.this.Reads.IntReads
+
+33
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1823
+1850
+58
+play.api.libs.json.JsReadable.as
+ApplyToImplicitArgs
+false
+0
+false
+json.this.JsValue.jsValueToJsLookup(page).\("wordcount").as[Int](json.this.Reads.IntReads)
+
+34
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1857
+1879
+59
+WikiPage.apply
+Apply
+false
+0
+false
+WikiPage.apply(title, words)
+
+35
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1748
+1748
+56
+scala.collection.IndexedSeq.canBuildFrom
+TypeApply
+false
+0
+false
+collection.this.IndexedSeq.canBuildFrom[WikiPage]
+
+36
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+parseJson
+1732
+1885
+56
+scala.collection.TraversableLike.map
+ApplyToImplicitArgs
+false
+0
+false
+pages.value.map[WikiPage, Seq[WikiPage]](((page: play.api.libs.json.JsValue) => {
+  val title: String = json.this.JsValue.jsValueToJsLookup(page).\("title").as[String](json.this.Reads.StringReads);
+  val words: Int = json.this.JsValue.jsValueToJsLookup(page).\("wordcount").as[Int](json.this.Reads.IntReads);
+  WikiPage.apply(title, words)
+}))(collection.this.IndexedSeq.canBuildFrom[WikiPage])
+
+37
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+totalWords
+1958
+1959
+64
+<nosymbol>
+Literal
+false
+0
+false
+0
+
+38
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+totalWords
+1982
+1992
+64
+WikiPage.words
+Select
+false
+0
+false
+page.words
+
+39
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+totalWords
+1976
+1992
+64
+scala.Int.+
+Apply
+false
+0
+false
+acc.+(page.words)
+
+40
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+totalWords
+1943
+1993
+64
+scala.collection.TraversableOnce.foldLeft
+Apply
+false
+0
+false
+pages.foldLeft[Int](0)(((acc: Int, page: WikiPage) => acc.+(page.words)))
+
+41
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2064
+2082
+68
+<nosymbol>
+Literal
+false
+0
+false
+"Nombre de pages: "
+
+42
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2096
+2097
+68
+<nosymbol>
+Literal
+false
+0
+false
+""
+
+43
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2083
+2095
+68
+scala.collection.SeqLike.length
+Select
+false
+0
+false
+pages.length
+
+44
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2062
+2097
+68
+scala.StringContext.s
+Apply
+false
+0
+false
+scala.StringContext.apply("Nombre de pages: ", "").s(pages.length)
+
+45
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2054
+2098
+68
+scala.Predef.println
+Apply
+false
+0
+false
+scala.Predef.println(scala.StringContext.apply("Nombre de pages: ", "").s(pages.length))
+
+46
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2113
+2136
+69
+<nosymbol>
+Literal
+false
+0
+false
+"Nombre total de mots: "
+
+47
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2155
+2156
+69
+<nosymbol>
+Literal
+false
+0
+false
+""
+
+48
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2137
+2154
+69
+Main.totalWords
+Apply
+false
+0
+false
+Main.this.totalWords(pages)
+
+49
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2111
+2156
+69
+scala.StringContext.s
+Apply
+false
+0
+false
+scala.StringContext.apply("Nombre total de mots: ", "").s(Main.this.totalWords(pages))
+
+50
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2103
+2157
+69
+scala.Predef.println
+Apply
+false
+0
+false
+scala.Predef.println(scala.StringContext.apply("Nombre total de mots: ", "").s(Main.this.totalWords(pages)))
+
+51
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2179
+2211
+71
+<nosymbol>
+Literal
+false
+0
+false
+"Nombre moyen de mots par page: "
+
+52
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2245
+2246
+71
+<nosymbol>
+Literal
+false
+0
+false
+""
+
+53
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2232
+2244
+71
+scala.collection.SeqLike.length
+Select
+false
+0
+false
+pages.length
+
+54
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2212
+2244
+71
+scala.Int./
+Apply
+false
+0
+false
+Main.this.totalWords(pages)./(pages.length)
+
+55
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2177
+2246
+71
+scala.StringContext.s
+Apply
+false
+0
+false
+scala.StringContext.apply("Nombre moyen de mots par page: ", "").s(Main.this.totalWords(pages)./(pages.length))
+
+56
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2162
+2252
+70
+scala.Predef.println
+Apply
+false
+0
+false
+scala.Predef.println(scala.StringContext.apply("Nombre moyen de mots par page: ", "").s(Main.this.totalWords(pages)./(pages.length)))
+
+57
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2287
+2300
+74
+scala.Predef.println
+Apply
+false
+0
+false
+scala.Predef.println(page)
+
+58
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+displayPages
+2257
+2306
+73
+scala.collection.IterableLike.foreach
+Apply
+false
+0
+false
+pages.foreach[Unit](((page: WikiPage) => scala.Predef.println(page)))
+
+59
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+run
+2372
+2386
+79
+Config.keyword
+Select
+false
+0
+false
+config.keyword
+
+60
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+run
+2388
+2400
+79
+Config.limit
+Select
+false
+0
+false
+config.limit
+
+61
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+run
+2362
+2401
+79
+Main.formatUrl
+Apply
+false
+0
+false
+Main.this.formatUrl(config.keyword, config.limit)
+
+62
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+run
+2406
+2442
+80
+Main.getPages
+Apply
+false
+0
+false
+Main.this.getPages(url, HttpUtils)
+
+63
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+run
+2490
+2505
+81
+Main.parseJson
+Apply
+false
+0
+false
+Main.this.parseJson(body)
+
+64
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+run
+2477
+2506
+81
+Main.displayPages
+Apply
+false
+0
+false
+Main.this.displayPages(Main.this.parseJson(body))
+
+65
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+run
+2541
+2556
+82
+scala.StringContext.s
+Apply
+false
+0
+false
+scala.StringContext.apply("Error: ", "").s(code)
+
+66
+/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
+<empty>
+Main
+Object
+Main
+run
+2533
+2557
+82
+scala.Predef.println
+Apply
+false
+0
+false
+scala.Predef.println(scala.StringContext.apply("Error: ", "").s(code))
+
