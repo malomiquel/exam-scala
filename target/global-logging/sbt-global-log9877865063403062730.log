@@ -1,0 +1,16 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(test, Some(066bf139-fba4-4c3c-9825-f3d9c9d14992), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Test / test[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mscalafmt: Formatting 1 Scala sources (/Users/malomiquel/Downloads/Exam-Scala/wikipages)...[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /Users/malomiquel/Downloads/Exam-Scala/wikipages/target/scala-2.12/test-classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/test/scala/MainSpec.scala:6:32: not enough arguments for constructor HttpRequest: (url: String, method: String, connectFunc: scalaj.http.HttpConstants.HttpExec, params: Seq[(String, String)], headers: Seq[(String, String)], options: Seq[scalaj.http.HttpOptions.HttpOption], proxyConfig: Option[java.net.Proxy], charset: String, sendBufferSize: Int, urlBuilder: scalaj.http.HttpRequest => String, compress: Boolean, digestCreds: Option[(String, String)])scalaj.http.HttpRequest.[0m
+[0m[[0m[31merror[0m] [0m[0mUnspecified value parameters url, method, connectFunc...[0m
+[0m[[0m[31merror[0m] [0m[0mobject MockHttpRequest extends HttpRequest {[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/test/scala/MainSpec.scala:11:36: not found: type MockHttpRequest[0m
+[0m[[0m[31merror[0m] [0m[0m  override def parse(url: String): MockHttpRequest = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0m(Test / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 1 s, completed 20 juin 2023, 11:32:44[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m

@@ -1,4 +1,4 @@
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(MainSpec, org.scalatest.tools.Framework$$anon$1@6b45f5d5, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(MainSpec, org.scalatest.tools.Framework$$anon$1@69b7e803, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mMainSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mformatUrl[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return a valid url[0m[0m
@@ -14,10 +14,25 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return an error when the required argument is not valid pass[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mparseArguments[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return a Config when the arguments are valid[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 1 second, 100 milliseconds.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 7[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mgetPages[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should return an error when the url is not valid *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  java.lang.NullPointerException: Cannot invoke "scalaj.http.HttpRequest.asString()" because the return value of "HttpUtils.parse(String)" is null[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at Main$.getPages(Main.scala:46)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at MainSpec.$anonfun$new$8(MainSpec.scala:98)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.Transformer.apply(Transformer.scala:22)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.Transformer.apply(Transformer.scala:20)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.flatspec.AnyFlatSpecLike$$anon$5.apply(AnyFlatSpecLike.scala:1812)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.TestSuite.withFixture(TestSuite.scala:196)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.TestSuite.withFixture$(TestSuite.scala:195)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 1 second, 97 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 8[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 1, aborted 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 7, failed 0, canceled 0, ignored 0, pending 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	MainSpec[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 7, failed 1, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m*** 1 TEST FAILED ***[0m[0m
+[0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
+[0m[[0m[31merror[0m] [0m[0m	MainSpec[0m
+[0m[[0m[31merror[0m] [0m[0m(Test / [31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m

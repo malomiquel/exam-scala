@@ -1,6 +1,5 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/test/scala/MainSpec.scala:11:12: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : String("lol")[0m
-[0m[[0m[31merror[0m] [0m[0m required: scalaj.http.HttpRequest[0m
-[0m[[0m[31merror[0m] [0m[0m    return "lol"[0m
-[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/malomiquel/Downloads/Exam-Scala/wikipages/src/test/scala/MainSpec.scala:6:32: not enough arguments for constructor HttpRequest: (url: String, method: String, connectFunc: scalaj.http.HttpConstants.HttpExec, params: Seq[(String, String)], headers: Seq[(String, String)], options: Seq[scalaj.http.HttpOptions.HttpOption], proxyConfig: Option[java.net.Proxy], charset: String, sendBufferSize: Int, urlBuilder: scalaj.http.HttpRequest => String, compress: Boolean, digestCreds: Option[(String, String)])scalaj.http.HttpRequest.[0m
+[0m[[0m[31merror[0m] [0m[0mUnspecified value parameters url, method, connectFunc...[0m
+[0m[[0m[31merror[0m] [0m[0mobject MockHttpRequest extends HttpRequest {[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

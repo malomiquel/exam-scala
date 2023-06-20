@@ -10,7 +10,7 @@ trait HttpUtils {
 }
 
 object HttpUtils extends HttpUtils {
-  override def parse(url: String): HttpRequest = Http(url)
+  def parse(url: String): HttpRequest = Http(url)
 }
 
 object Main extends App {
@@ -26,13 +26,13 @@ object Main extends App {
       OParser.sequence(
         programName("WikiStats"),
         opt[Int]('l', "limit")
-          .action((x, c) => c.copy(limit = x))
+          .action((limit, config) => config.copy(limit = limit))
           .text(
             "La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)"
           ),
         opt[String]('k', "keyword")
           .required()
-          .action((x, c) => c.copy(keyword = x))
+          .action((keyword, config) => config.copy(keyword = keyword))
           .text("Le mot clef est un argument obligatoire")
       )
     }

@@ -1,1 +1,3 @@
-# exam-scala
+# Examen scala
+
+## Le projet

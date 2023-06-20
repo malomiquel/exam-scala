@@ -25,8 +25,8 @@ HttpUtils
 Object
 HttpUtils
 parse
+344
 353
-362
 13
 scalaj.http.BaseHttp.apply
 Apply
@@ -42,8 +42,8 @@ Main
 Object
 Main
 <none>
-409
-413
+400
+404
 17
 scala.App.args
 Select
@@ -59,8 +59,8 @@ Main
 Object
 Main
 <none>
-394
-414
+385
+405
 17
 Main.parseArguments
 Apply
@@ -76,8 +76,8 @@ Main
 Object
 Main
 <none>
-448
-459
+439
+450
 18
 Main.run
 Apply
@@ -93,8 +93,8 @@ Main
 Object
 Main
 <none>
-485
-521
+476
+512
 19
 scala.Predef.println
 Apply
@@ -110,8 +110,8 @@ Main
 Object
 Main
 parseArguments
-607
-630
+598
+621
 23
 scopt.OParser.builder
 TypeApply
@@ -127,8 +127,8 @@ Main
 Object
 Main
 parseArguments
-705
-729
+696
+720
 27
 scopt.OParserBuilder.programName
 Apply
@@ -144,15 +144,15 @@ Main
 Object
 Main
 parseArguments
-739
-933
+730
+942
 30
 scopt.OParser.text
 Apply
 false
 0
 false
-builder.opt[Int]('l', "limit")(scopt.this.Read.intRead).action(((x: Int, c: Config) => c.copy(x, c.copy$default$2))).text("La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)")
+builder.opt[Int]('l', "limit")(scopt.this.Read.intRead).action(((limit: Int, config: Config) => config.copy(limit, config.copy$default$2))).text("La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)")
 
 9
 /Users/malomiquel/Downloads/Exam-Scala/wikipages/src/main/scala/Main.scala
@@ -161,18 +161,18 @@ Main
 Object
 Main
 parseArguments
-943
-1100
+952
+1131
 36
 scopt.OParser.text
 Apply
 false
 0
 false
-builder.opt[String]('k', "keyword")(scopt.this.Read.stringRead).required().action(((x: String, c: Config) => {
-  <artifact> val x$1: String = x;
-  <artifact> val x$2: Int = c.copy$default$1;
-  c.copy(x$2, x$1)
+builder.opt[String]('k', "keyword")(scopt.this.Read.stringRead).required().action(((keyword: String, config: Config) => {
+  <artifact> val x$1: String = keyword;
+  <artifact> val x$2: Int = config.copy$default$1;
+  config.copy(x$2, x$1)
 })).text("Le mot clef est un argument obligatoire")
 
 10
@@ -182,18 +182,18 @@ Main
 Object
 Main
 parseArguments
-679
-1108
+670
+1139
 26
 scopt.OParser.sequence
 Apply
 false
 0
 false
-scopt.OParser.sequence[Unit, Config](builder.programName("WikiStats"), builder.opt[Int]('l', "limit")(scopt.this.Read.intRead).action(((x: Int, c: Config) => c.copy(x, c.copy$default$2))).text("La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)"), builder.opt[String]('k', "keyword")(scopt.this.Read.stringRead).required().action(((x: String, c: Config) => {
-  <artifact> val x$1: String = x;
-  <artifact> val x$2: Int = c.copy$default$1;
-  c.copy(x$2, x$1)
+scopt.OParser.sequence[Unit, Config](builder.programName("WikiStats"), builder.opt[Int]('l', "limit")(scopt.this.Read.intRead).action(((limit: Int, config: Config) => config.copy(limit, config.copy$default$2))).text("La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)"), builder.opt[String]('k', "keyword")(scopt.this.Read.stringRead).required().action(((keyword: String, config: Config) => {
+  <artifact> val x$1: String = keyword;
+  <artifact> val x$2: Int = config.copy$default$1;
+  config.copy(x$2, x$1)
 })).text("Le mot clef est un argument obligatoire"))
 
 11
@@ -203,8 +203,8 @@ Main
 Object
 Main
 parseArguments
-1141
-1145
+1172
+1176
 39
 scala.LowPriorityImplicits.wrapRefArray
 ApplyImplicitView
@@ -220,8 +220,8 @@ Main
 Object
 Main
 parseArguments
-1147
-1147
+1178
+1178
 39
 Config.apply$default$1
 Select
@@ -237,8 +237,8 @@ Main
 Object
 Main
 parseArguments
-1147
-1147
+1178
+1178
 39
 Config.apply$default$2
 Select
@@ -254,8 +254,8 @@ Main
 Object
 Main
 parseArguments
-1147
-1155
+1178
+1186
 39
 Config.apply
 Apply
@@ -271,8 +271,8 @@ Main
 Object
 Main
 parseArguments
-1119
-1156
+1150
+1187
 39
 scopt.OParser.parse
 Apply
@@ -288,8 +288,8 @@ Main
 Object
 Main
 formatUrl
-1221
-1345
+1252
+1376
 43
 scala.StringContext.s
 Apply
@@ -305,8 +305,8 @@ Main
 Object
 Main
 getPages
-1441
-1470
+1472
+1501
 46
 scalaj.http.HttpRequest.asString
 Select
@@ -322,8 +322,8 @@ Main
 Object
 Main
 getPages
-1475
-1488
+1506
+1519
 47
 scalaj.http.HttpResponse.code
 Select
@@ -339,8 +339,8 @@ Main
 Object
 Main
 getPages
-1521
-1534
+1552
+1565
 48
 scalaj.http.HttpResponse.body
 Select
@@ -356,8 +356,8 @@ Main
 Object
 Main
 getPages
-1515
-1535
+1546
+1566
 48
 scala.util.Right.apply
 Apply
@@ -373,8 +373,8 @@ Main
 Object
 Main
 getPages
-1559
-1572
+1590
+1603
 49
 scalaj.http.HttpResponse.code
 Select
@@ -390,8 +390,8 @@ Main
 Object
 Main
 getPages
-1554
-1573
+1585
+1604
 49
 scala.util.Left.apply
 Apply
@@ -407,8 +407,8 @@ Main
 Object
 Main
 parseJson
-1652
-1671
+1683
+1702
 54
 play.api.libs.json.Json.parse
 Apply
@@ -424,8 +424,8 @@ Main
 Object
 Main
 parseJson
-1689
-1703
+1720
+1734
 55
 play.api.libs.json.JsLookup.\
 Apply
@@ -441,8 +441,8 @@ Main
 Object
 Main
 parseJson
-1706
-1714
+1737
+1745
 55
 <nosymbol>
 Literal
@@ -458,8 +458,8 @@ Main
 Object
 Main
 parseJson
-1718
-1718
+1749
+1749
 55
 play.api.libs.json.DefaultReads.JsArrayReads
 Select
@@ -475,8 +475,8 @@ Main
 Object
 Main
 parseJson
-1689
-1727
+1720
+1758
 55
 play.api.libs.json.JsReadable.as
 ApplyToImplicitArgs
@@ -492,8 +492,8 @@ Main
 Object
 Main
 parseJson
-1784
-1791
+1815
+1822
 57
 <nosymbol>
 Literal
@@ -509,8 +509,8 @@ Main
 Object
 Main
 parseJson
-1795
-1795
+1826
+1826
 57
 play.api.libs.json.DefaultReads.StringReads
 Select
@@ -526,8 +526,8 @@ Main
 Object
 Main
 parseJson
-1777
-1803
+1808
+1834
 57
 play.api.libs.json.JsReadable.as
 ApplyToImplicitArgs
@@ -543,8 +543,8 @@ Main
 Object
 Main
 parseJson
-1830
-1841
+1861
+1872
 58
 <nosymbol>
 Literal
@@ -560,8 +560,8 @@ Main
 Object
 Main
 parseJson
-1845
-1845
+1876
+1876
 58
 play.api.libs.json.DefaultReads.IntReads
 Select
@@ -577,8 +577,8 @@ Main
 Object
 Main
 parseJson
-1823
-1850
+1854
+1881
 58
 play.api.libs.json.JsReadable.as
 ApplyToImplicitArgs
@@ -594,8 +594,8 @@ Main
 Object
 Main
 parseJson
-1857
-1879
+1888
+1910
 59
 WikiPage.apply
 Apply
@@ -611,8 +611,8 @@ Main
 Object
 Main
 parseJson
-1748
-1748
+1779
+1779
 56
 scala.collection.IndexedSeq.canBuildFrom
 TypeApply
@@ -628,8 +628,8 @@ Main
 Object
 Main
 parseJson
-1732
-1885
+1763
+1916
 56
 scala.collection.TraversableLike.map
 ApplyToImplicitArgs
@@ -649,8 +649,8 @@ Main
 Object
 Main
 totalWords
-1958
-1959
+1989
+1990
 64
 <nosymbol>
 Literal
@@ -666,8 +666,8 @@ Main
 Object
 Main
 totalWords
-1982
-1992
+2013
+2023
 64
 WikiPage.words
 Select
@@ -683,8 +683,8 @@ Main
 Object
 Main
 totalWords
-1976
-1992
+2007
+2023
 64
 scala.Int.+
 Apply
@@ -700,8 +700,8 @@ Main
 Object
 Main
 totalWords
-1943
-1993
+1974
+2024
 64
 scala.collection.TraversableOnce.foldLeft
 Apply
@@ -717,8 +717,8 @@ Main
 Object
 Main
 displayPages
-2064
-2082
+2095
+2113
 68
 <nosymbol>
 Literal
@@ -734,8 +734,8 @@ Main
 Object
 Main
 displayPages
-2096
-2097
+2127
+2128
 68
 <nosymbol>
 Literal
@@ -751,8 +751,8 @@ Main
 Object
 Main
 displayPages
-2083
-2095
+2114
+2126
 68
 scala.collection.SeqLike.length
 Select
@@ -768,8 +768,8 @@ Main
 Object
 Main
 displayPages
-2062
-2097
+2093
+2128
 68
 scala.StringContext.s
 Apply
@@ -785,8 +785,8 @@ Main
 Object
 Main
 displayPages
-2054
-2098
+2085
+2129
 68
 scala.Predef.println
 Apply
@@ -802,8 +802,8 @@ Main
 Object
 Main
 displayPages
-2113
-2136
+2144
+2167
 69
 <nosymbol>
 Literal
@@ -819,8 +819,8 @@ Main
 Object
 Main
 displayPages
-2155
-2156
+2186
+2187
 69
 <nosymbol>
 Literal
@@ -836,8 +836,8 @@ Main
 Object
 Main
 displayPages
-2137
-2154
+2168
+2185
 69
 Main.totalWords
 Apply
@@ -853,8 +853,8 @@ Main
 Object
 Main
 displayPages
-2111
-2156
+2142
+2187
 69
 scala.StringContext.s
 Apply
@@ -870,8 +870,8 @@ Main
 Object
 Main
 displayPages
-2103
-2157
+2134
+2188
 69
 scala.Predef.println
 Apply
@@ -887,8 +887,8 @@ Main
 Object
 Main
 displayPages
-2179
-2211
+2210
+2242
 71
 <nosymbol>
 Literal
@@ -904,8 +904,8 @@ Main
 Object
 Main
 displayPages
-2245
-2246
+2276
+2277
 71
 <nosymbol>
 Literal
@@ -921,8 +921,8 @@ Main
 Object
 Main
 displayPages
-2232
-2244
+2263
+2275
 71
 scala.collection.SeqLike.length
 Select
@@ -938,8 +938,8 @@ Main
 Object
 Main
 displayPages
-2212
-2244
+2243
+2275
 71
 scala.Int./
 Apply
@@ -955,8 +955,8 @@ Main
 Object
 Main
 displayPages
-2177
-2246
+2208
+2277
 71
 scala.StringContext.s
 Apply
@@ -972,8 +972,8 @@ Main
 Object
 Main
 displayPages
-2162
-2252
+2193
+2283
 70
 scala.Predef.println
 Apply
@@ -989,8 +989,8 @@ Main
 Object
 Main
 displayPages
-2287
-2300
+2318
+2331
 74
 scala.Predef.println
 Apply
@@ -1006,8 +1006,8 @@ Main
 Object
 Main
 displayPages
-2257
-2306
+2288
+2337
 73
 scala.collection.IterableLike.foreach
 Apply
@@ -1023,8 +1023,8 @@ Main
 Object
 Main
 run
-2372
-2386
+2403
+2417
 79
 Config.keyword
 Select
@@ -1040,8 +1040,8 @@ Main
 Object
 Main
 run
-2388
-2400
+2419
+2431
 79
 Config.limit
 Select
@@ -1057,8 +1057,8 @@ Main
 Object
 Main
 run
-2362
-2401
+2393
+2432
 79
 Main.formatUrl
 Apply
@@ -1074,8 +1074,8 @@ Main
 Object
 Main
 run
-2406
-2442
+2437
+2473
 80
 Main.getPages
 Apply
@@ -1091,8 +1091,8 @@ Main
 Object
 Main
 run
-2490
-2505
+2521
+2536
 81
 Main.parseJson
 Apply
@@ -1108,8 +1108,8 @@ Main
 Object
 Main
 run
-2477
-2506
+2508
+2537
 81
 Main.displayPages
 Apply
@@ -1125,8 +1125,8 @@ Main
 Object
 Main
 run
-2541
-2556
+2572
+2587
 82
 scala.StringContext.s
 Apply
@@ -1142,8 +1142,8 @@ Main
 Object
 Main
 run
-2533
-2557
+2564
+2588
 82
 scala.Predef.println
 Apply
