@@ -1,6 +1,0 @@
-[0m[[0m[0mdebug[0m] [0m[0m> Exec(scalafmtCheck, Some(2694f34a-3bd6-4d29-9d98-9aa01eb9cb14), Some(CommandSource(console0)))[0m
-[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / scalafmtCheck[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0minfo[0m] [0m[0mscalafmt: Checking 1 Scala sources (/Users/malomiquel/Downloads/Exam-Scala/wikipages)...[0m
-[0m[[0m[32msuccess[0m] [0m[0mTotal time: 6 s, completed 20 juin 2023, 08:43:51[0m
-[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m

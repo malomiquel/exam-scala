@@ -13,10 +13,18 @@ object Main extends App {
     val parser = {
       import builder._
       OParser.sequence(
-        programName("WikiStats")
+        programName("WikiStats"),
+        opt[Int]('l', "limit")
+          .action((x, c) => c.copy(limit = x))
+          .text(
+            "La limite du nombre de pages renvoyés par l’API (optionnel, valant 10 par défaut)"
+          ),
+        opt[String]('k', "keyword")
+          .required()
+          .action((x, c) => c.copy(keyword = x))
+          .text("Le mot clef est un argument obligatoire")
       )
     }
-
     OParser.parse(parser, args, Config())
   }
 
