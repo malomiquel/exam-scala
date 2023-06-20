@@ -28,6 +28,9 @@ object Main extends App {
     OParser.parse(parser, args, Config())
   }
 
+  def formatUrl(keyword: String, limit: Int): String =
+    s"https://en.wikipedia.org/w/api.php?action=query&format=json&prop=&sroffset=0&list=search&srsearch=$keyword&srlimit=$limit"
+
   def run(config: Config): Unit = {
     println(config)
   }
